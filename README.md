@@ -1,42 +1,20 @@
-# Nuxt 3 Minimal Starter
+# 关于
+基于**`Nuxt3`**的`SSR`属性文件，基于SSR开发仿掘金站点
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# 分支说明
+`main`：主分支（非必要不合并）
+`dev-xxx`：子分支 （xxx为各自名字）
 
-## Setup
+# 启动
+```
+pnpm run dev
 
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
 ```
 
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
+# git
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
+git add .
+pnpm run commit
+（选择合适的提交方式并填写说明）
+git push origin xxx(分支)
 ```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
