@@ -1,7 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    srcDir: 'src/',
-    modules: ['@nuxtjs/axios'],
+    // modules: [
+    //     '@nuxtjs/axios',
+    //     '@nuxtjs/style-resources'
+    // ],
     app: {
         // 配置应用的head标签
         head: {
@@ -30,5 +32,5 @@ export default defineNuxtConfig({
         },
     },
     // 全局css
-    css: ['@/assets/css/reset.css'],
+    css: ['~/assets/css/reset.css', '~/assets/scss/global.scss'],
 });
