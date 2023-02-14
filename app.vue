@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <h1>我是app.vue</h1>
-    <NuxtLayout></NuxtLayout>
-  </div>
+    <div>
+        <!-- 路由出口 -->
+        <NuxtLayout >
+            <NuxtPage></NuxtPage>
+        </NuxtLayout>
+    </div>
 </template>

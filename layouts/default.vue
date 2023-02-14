@@ -1,6 +1,14 @@
 <template>
     <div>
-        通用布局页面,default.vue
+        <TheHeader></TheHeader>
+        <!-- app.vue的NuxtLayout包住的部分 -->
         <slot />
     </div>
 </template>
+
+<script>
+</script>
+
+<style scoped>
+/* ... */
+</style>
