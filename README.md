@@ -1,8 +1,8 @@
-# 关于
-基于 **`Nuxt3`** 的`SSR`属性文件，基于SSR开发仿掘金站点
+# 🚀关于
+基于 **`Nuxt3`** 的 **`SSR`** 属性文件开发的仿掘金站点
 
 
-CMS在另外一个仓库
+基于 **`Strapi`** 的 **`CMS`** 构建文件 : [仓库地址](https://github.com/xpt030610/fangJueJin-CMS)
 
 
 # 分支说明
