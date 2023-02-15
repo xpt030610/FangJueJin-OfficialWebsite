@@ -17,8 +17,6 @@
 ```
 pnpm run dev
 ```
-
-
 # git
 ```
 git add .
