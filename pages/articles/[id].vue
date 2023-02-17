@@ -5,6 +5,7 @@
     </div>
 </template>
 
-<script>
-
+<script setup>
+const isIndex = useIsIndex();
+isIndex.value = false;
 </script>
