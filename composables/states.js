@@ -1,2 +1,2 @@
 export const useIsIndex = () => useState('isIndex', () => true);
-export const useColor = () => useState('color', () => 'pink');
+export const useIsLabel = () => useState('isLabel', () => 1);

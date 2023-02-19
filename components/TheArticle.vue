@@ -8,6 +8,11 @@
             </ul>
         </div>
         <ul class="article">
+            <!-- <RecycleScroller
+                :items="itemArray"
+                :item-size="132"
+                style="height: 2640px"
+            > -->
             <li v-for="art in artRes" :key="art.id">
                 <nuxt-link :to="`/articles/${art.id}`">
                     <div class="meta-container">
@@ -48,16 +53,31 @@
                     </div>
                 </nuxt-link>
             </li>
+            <!-- </RecycleScroller> -->
         </ul>
     </div>
 </template>
+<script>
+// import { RecycleScroller } from 'vue-virtual-scroller';
+
+// export default {
+//     components: {
+//         RecycleScroller,
+//     },
+// };
+// export const useArtList = () => useState('artList', () => await useFetch(
+//   'http://localhost:1337/api/articles?populate=*',
+// ));
+
+</script>
 
 <script setup>
 // 文章渲染列表
+const artRes = ref({});
 const { data: artList } = await useFetch(
     'http://localhost:1337/api/articles?populate=*',
 );
-const artRes = artList.value.data;
+artRes.value = artList.value.data;
 
 //计算时间相差函数
 const dateCount = (artdate) => {

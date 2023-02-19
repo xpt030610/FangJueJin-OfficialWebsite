@@ -42,4 +42,8 @@ export default defineNuxtConfig({
             },
         },
     },
+    plugins: [{ src: '~/plugins/vue-virtual-scroller.js', mode: 'client' }],
+    build: {
+        transpile: ['vue-virtual-scroller'],
+    },
 });

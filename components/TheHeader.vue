@@ -31,7 +31,6 @@ const mainRes = mainList.value.data;
 //设置初始为“首页”
 const isIndex = useIsIndex();
 isIndex.value = true;
-// const isIndex = useState('isIndex', () => true);
 </script>
 
 <style  lang="scss" scoped>

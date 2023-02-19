@@ -2,7 +2,18 @@
     <div class="container">
         <div class="view-nav">
             <ul>
-                <li v-for="v in artRes" :key="v.id">
+                <li
+                    :class="[1 === activeIndex ? 'active' : '']"
+                    @click="changeLabel(1)"
+                >
+                    综合
+                </li>
+                <li
+                    :class="[v.id === activeIndex ? 'active' : '']"
+                    v-for="v in artRes"
+                    :key="v.id"
+                    @click="changeLabel(v.id)"
+                >
                     {{ v.attributes.item }}
                 </li>
             </ul>
@@ -13,15 +24,49 @@
         </div>
     </div>
 </template>
+
 <script setup>
 // 改“首页”状态
 const isIndex = useIsIndex();
 isIndex.value = true;
+
 //获取标签列表
 const { data: artList } = await useFetch(
     'http://localhost:1337/api/article-tabs',
 );
 const artRes = artList.value.data;
+
+// http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=4
+//将label的值改为id
+const isLabel = useIsLabel();
+let activeIndex = ref(1);
+const changeLabel = (id) => {
+    // const { data: artList } = await useFetch(
+    //     'http://localhost:1337/api/article-tabs',
+    // );
+    isLabel.value = id;
+    console.log(activeIndex);
+    activeIndex.value = id
+    triggerRef(activeIndex)
+};
+</script>
+
+<script>
+// export default {
+//     const { articles, fetchArticles } = useFetch();
+
+//     methods: {
+//         async changeLabel(id) {
+//             console.log(artRes.value);
+//             // artList.value  = await useFetch(
+//             //     'http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${id}',
+//             // );
+//             // console.log(artList);
+//             // const artRes = artList.value.data;
+//             // console.log(artRes);
+//         },
+//     },
+// };
 </script>
 
 <style lang="scss" scoped>
@@ -51,15 +96,16 @@ const artRes = artList.value.data;
             padding: 0 1rem 0 0;
             margin-right: 1.2rem;
             color: $header-color;
+            &:hover {
+                cursor: pointer;
+                color: $theme-color;
+            }
         }
-        li:hover {
-            cursor: pointer;
+        .active {
             color: $theme-color;
         }
     }
-    .view-nav .active {
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+
     .view-container {
         display: flex;
         justify-content: space-between;
