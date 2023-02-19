@@ -2,9 +2,9 @@
     <div class="articles">
         <div class="article-bar">
             <ul>
-                <li>推荐</li>
-                <li>最新</li>
-                <li>热榜</li>
+                <li :class="[1 === activeIndex ? 'active' : '']" @click="changeNav(1)">推荐</li>
+                <li :class="[2 === activeIndex ? 'active' : '']" @click="changeNav(2)">最新</li>
+                <li :class="[3 === activeIndex ? 'active' : '']" @click="changeNav(3)">热榜</li>
             </ul>
         </div>
         <ul class="article">
@@ -68,16 +68,23 @@
 // export const useArtList = () => useState('artList', () => await useFetch(
 //   'http://localhost:1337/api/articles?populate=*',
 // ));
-
 </script>
 
 <script setup>
+import { useIsLabel } from '@/composables/states'
+import { watch } from 'vue'
 // 文章渲染列表
 const artRes = ref({});
 const { data: artList } = await useFetch(
     'http://localhost:1337/api/articles?populate=*',
 );
 artRes.value = artList.value.data;
+
+let activeIndex = ref(1);
+const changeNav = (id) => {
+    activeIndex.value = id
+    triggerRef(activeIndex)
+};
 
 //计算时间相差函数
 const dateCount = (artdate) => {
@@ -96,7 +103,15 @@ const dateCount = (artdate) => {
     else if (inter < 60 * 24) {
         return parseInt(inter / 60).toString() + '小时前';
     }
-    //其他 年月日时分
+    //多少天前
+    else if (inter < 60 * 24 * 30) {
+        return parseInt(inter / (60 * 24)).toString() + '天前';
+    }
+    //多少月前
+    else if (inter < 60 * 24 * 30 * 12) {
+        return parseInt(inter / (60 * 24 * 12)).toString() + '个月前';
+    }
+    //太久远的就： 年月日时分
     else {
         return (
             date.getFullYear().toString() +
@@ -122,8 +137,22 @@ const artCount = (art) => {
     );
     return result;
 };
+//根据标签内容筛选相应文章
 
-
+const isLabel = useIsLabel();
+watch(isLabel, async (newVal, oldVal) => {
+    if (newVal != 1) {
+        const { data: artList } = await useFetch(
+            `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${newVal}`,
+        );
+        artRes.value = artList.value.data;
+    } else {
+        const { data: artList } = await useFetch(
+            'http://localhost:1337/api/articles?populate=*',
+        );
+        artRes.value = artList.value.data;
+    }
+});
 </script>
 
 <style lang="scss" scoped>
@@ -151,6 +180,9 @@ const artCount = (art) => {
                     cursor: pointer;
                     color: $theme-color;
                 }
+            }
+            .active {
+                color: $theme-color;
             }
         }
     }

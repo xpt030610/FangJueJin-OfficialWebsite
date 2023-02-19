@@ -36,37 +36,14 @@ const { data: artList } = await useFetch(
 );
 const artRes = artList.value.data;
 
-// http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=4
-//将label的值改为id
+// 将label的值改为id
 const isLabel = useIsLabel();
 let activeIndex = ref(1);
 const changeLabel = (id) => {
-    // const { data: artList } = await useFetch(
-    //     'http://localhost:1337/api/article-tabs',
-    // );
     isLabel.value = id;
-    console.log(activeIndex);
     activeIndex.value = id
     triggerRef(activeIndex)
 };
-</script>
-
-<script>
-// export default {
-//     const { articles, fetchArticles } = useFetch();
-
-//     methods: {
-//         async changeLabel(id) {
-//             console.log(artRes.value);
-//             // artList.value  = await useFetch(
-//             //     'http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${id}',
-//             // );
-//             // console.log(artList);
-//             // const artRes = artList.value.data;
-//             // console.log(artRes);
-//         },
-//     },
-// };
 </script>
 
 <style lang="scss" scoped>
