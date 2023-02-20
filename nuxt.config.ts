@@ -1,8 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     modules: [
-        '@nuxt/content',
-        //     '@nuxtjs/style-resources'
+        // '@nuxtjs/tailwindcss'
     ],
     app: {
         // 配置应用的head标签
@@ -37,13 +36,11 @@ export default defineNuxtConfig({
         css: {
             preprocessorOptions: {
                 scss: {
-                    additionalData: '@import "assets/scss/global.scss";',
+                    additionalData:
+                        '@import "assets/scss/mixin.scss";@import "assets/scss/variable.scss";',
                 },
             },
         },
     },
-    plugins: [{ src: '~/plugins/vue-virtual-scroller.js', mode: 'client' }],
-    build: {
-        transpile: ['vue-virtual-scroller'],
-    },
+    // plugins: [{ src: '~/plugins/vue-virtual-scroller.js', mode: 'client' }],
 });

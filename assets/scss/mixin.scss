@@ -1,0 +1,50 @@
+@import "./variable.scss";
+// 背景色
+@mixin bg_color(){
+  background: $background-color-theme;
+  [data-theme=theme2] & {
+    background: $background-color-theme2;
+  }
+}
+//次要背景色
+@mixin bg_sub_color(){
+  background: $background-color-sub-theme;
+  [data-theme=theme2] & {
+    background: $background-color-sub-theme2;
+  }
+}
+//字体颜色
+@mixin font_color(){
+  color: $font-color-theme;
+  [data-theme=theme2] & {
+    color: $font-color-theme2;
+  }
+}
+//次要字体颜色
+@mixin font_sub_color(){
+  color: $font-color-sub-theme;
+  [data-theme=theme2] & {
+    color: $font-color-sub-theme2;
+  }
+}
+//小字体颜色
+@mixin font_small_color(){
+  color: $font-color-small-theme;
+  [data-theme=theme2] & {
+    color: $font-color-small-theme2;
+  }
+}
+
+@mixin icon_color(){
+    color: $icon-color-theme;
+    [data-theme=theme2] & {
+        color: $icon-color-theme2;
+    }
+}
+//边颜色
+@mixin border_color(){
+  border-color: $border-color-theme;
+  [data-theme=theme2] & {
+    border-color: $border-color-theme2;
+  }
+}

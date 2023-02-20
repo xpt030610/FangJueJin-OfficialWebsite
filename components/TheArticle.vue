@@ -106,11 +106,25 @@ let activeIndex = ref(1);
 const changeNav = async (id) => {
     activeIndex.value = id;
     triggerRef(activeIndex);
+    if (id == 1) {
+        navValue = 1;
+        if (labelValue != 1) {
+            const { data: artList } = await useFetch(
+                `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${labelValue}`,
+            );
+            artRes.value = artList.value.data;
+        } else {
+            const { data: artList } = await useFetch(
+                'http://localhost:1337/api/articles?populate=*',
+            );
+            artRes.value = artList.value.data;
+        }
+    }
     if (id == 2) {
         navValue = 2;
         if (labelValue != 1) {
             const { data: artList } = await useFetch(
-                `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${newVal}&sort[0]=date%3Adesc`,
+                `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${labelValue}&sort[0]=date%3Adesc`,
             );
             artRes.value = artList.value.data;
         } else {
@@ -196,7 +210,7 @@ watch(isLabel, async (newVal, oldVal) => {
         );
         artRes.value = artList.value.data;
         labelValue = newVal;
-    }else {
+    } else {
         const { data: artList } = await useFetch(
             'http://localhost:1337/api/articles?populate=*',
         );
@@ -208,11 +222,12 @@ watch(isLabel, async (newVal, oldVal) => {
 <style lang="scss" scoped>
 .articles {
     width: 700px;
-    background-color: #fff;
+    @include bg_color();
     .article-bar {
         height: 46px;
         box-sizing: border-box;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid ;
+        @include border_color;
         ul {
             display: flex;
             padding: 0 10px;
@@ -220,20 +235,22 @@ watch(isLabel, async (newVal, oldVal) => {
                 margin: 16px 0;
                 font-size: 14px;
                 padding: 0 15px;
-                color: $header-color;
+                @include font_sub_color();
 
                 &:nth-child(1),
                 &:nth-child(2) {
-                    border-right: 1px solid $border-line;
+                    border-right: 1px solid ;
+                    @include border_color();
                 }
                 &:hover {
                     cursor: pointer;
                     color: $theme-color;
                 }
-            }
-            .active {
+                &.active {
                 color: $theme-color;
             }
+            }
+            
         }
     }
     .article {
@@ -246,18 +263,19 @@ watch(isLabel, async (newVal, oldVal) => {
                 display: flex;
                 height: 22px;
                 font-size: 13px;
-                color: $header-color;
+                @include font_sub_color();
                 .artist,
                 .date,
                 .article-tab {
                     cursor: pointer;
                     margin: 5px 0;
                     padding: 0 10px;
-                    border-right: 1px solid $border-line;
+                    border-right: 1px solid ;
+                    @include border_color();
                 }
                 .artist {
                     padding-left: 0px;
-                    color: $header-hover-color;
+                    @include font_color();
                     &:hover {
                         color: $theme-color;
                     }
@@ -293,7 +311,8 @@ watch(isLabel, async (newVal, oldVal) => {
                 display: flex;
                 margin-top: 6px;
                 padding-bottom: 12px;
-                border-bottom: 1px solid $border-line;
+                border-bottom: 1px solid ;
+                @include border-color();
                 .content-main {
                     width: 516px;
                     margin-top: 8px;
@@ -301,7 +320,7 @@ watch(isLabel, async (newVal, oldVal) => {
                         font-style: 24px;
                         font-weight: 800;
                         margin-bottom: 8px;
-                        color: #1d2129;
+                        @include font_color();
                     }
                     .article-text {
                         font-weight: 400;

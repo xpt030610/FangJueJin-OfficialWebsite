@@ -41,8 +41,8 @@ const isLabel = useIsLabel();
 let activeIndex = ref(1);
 const changeLabel = (id) => {
     isLabel.value = id;
-    activeIndex.value = id
-    triggerRef(activeIndex)
+    activeIndex.value = id;
+    triggerRef(activeIndex);
 };
 </script>
 
@@ -53,14 +53,17 @@ const changeLabel = (id) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    @include bg_sub_color();
     .view-nav {
         position: sticky;
         top: 0;
         width: 100%;
         height: 46px;
-        background-color: #fff;
         z-index: 3;
-        border-bottom: 1px solid $border-line;
+        border-bottom: 1px solid;
+        @include bg_color();
+        @include border_color();
         ul {
             position: -webkit-sticky; /* 兼容 Safari */
             position: sticky;
@@ -72,15 +75,16 @@ const changeLabel = (id) => {
             line-height: 46px;
             padding: 0 1rem 0 0;
             margin-right: 1.2rem;
-            color: $header-color;
+            @include font_sub_color();
             &:hover {
                 cursor: pointer;
                 color: $theme-color;
             }
-        }
-        .active {
+            &.active {
             color: $theme-color;
         }
+        }
+        
     }
 
     .view-container {
