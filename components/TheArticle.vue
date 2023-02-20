@@ -2,9 +2,24 @@
     <div class="articles">
         <div class="article-bar">
             <ul>
-                <li :class="[1 === activeIndex ? 'active' : '']" @click="changeNav(1)">推荐</li>
-                <li :class="[2 === activeIndex ? 'active' : '']" @click="changeNav(2)">最新</li>
-                <li :class="[3 === activeIndex ? 'active' : '']" @click="changeNav(3)">热榜</li>
+                <li
+                    :class="[1 === activeIndex ? 'active' : '']"
+                    @click="changeNav(1)"
+                >
+                    推荐
+                </li>
+                <li
+                    :class="[2 === activeIndex ? 'active' : '']"
+                    @click="changeNav(2)"
+                >
+                    最新
+                </li>
+                <li
+                    :class="[3 === activeIndex ? 'active' : '']"
+                    @click="changeNav(3)"
+                >
+                    热榜
+                </li>
             </ul>
         </div>
         <ul class="article">
@@ -71,19 +86,40 @@
 </script>
 
 <script setup>
-import { useIsLabel } from '@/composables/states'
-import { watch } from 'vue'
+//引用
+import { useIsLabel } from '@/composables/states';
+import { watch } from 'vue';
+
+//全局变量 表示现在是在第几个标签
+let labelValue = 1;
+//全局变量 表示现在是在什么排序
+let navValue = 1;
+
 // 文章渲染列表
 const artRes = ref({});
 const { data: artList } = await useFetch(
     'http://localhost:1337/api/articles?populate=*',
 );
 artRes.value = artList.value.data;
-
+//设置“active”的标签
 let activeIndex = ref(1);
-const changeNav = (id) => {
-    activeIndex.value = id
-    triggerRef(activeIndex)
+const changeNav = async (id) => {
+    activeIndex.value = id;
+    triggerRef(activeIndex);
+    if (id == 2) {
+        navValue = 2;
+        if (labelValue != 1) {
+            const { data: artList } = await useFetch(
+                `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${newVal}&sort[0]=date%3Adesc`,
+            );
+            artRes.value = artList.value.data;
+        } else {
+            const { data: artList } = await useFetch(
+                'http://localhost:1337/api/articles?populate=*&sort[0]=date%3Adesc',
+            );
+            artRes.value = artList.value.data;
+        }
+    }
 };
 
 //计算时间相差函数
@@ -137,16 +173,30 @@ const artCount = (art) => {
     );
     return result;
 };
-//根据标签内容筛选相应文章
 
+//根据标签内容筛选相应文章
 const isLabel = useIsLabel();
+//监视isLabel变化
 watch(isLabel, async (newVal, oldVal) => {
-    if (newVal != 1) {
+    if (newVal != 1 && navValue == 1) {
         const { data: artList } = await useFetch(
             `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${newVal}`,
         );
         artRes.value = artList.value.data;
-    } else {
+        labelValue = newVal;
+    } else if (newVal != 1 && navValue == 2) {
+        const { data: artList } = await useFetch(
+            `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${newVal}&sort[0]=date%3Adesc`,
+        );
+        artRes.value = artList.value.data;
+        labelValue = newVal;
+    } else if (newVal != 2 && navValue == 2) {
+        const { data: artList } = await useFetch(
+            `http://localhost:1337/api/articles?populate=*&sort[0]=date%3Adesc`,
+        );
+        artRes.value = artList.value.data;
+        labelValue = newVal;
+    }else {
         const { data: artList } = await useFetch(
             'http://localhost:1337/api/articles?populate=*',
         );
