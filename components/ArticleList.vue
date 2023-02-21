@@ -227,7 +227,7 @@ watch(isLabel, async (newVal, oldVal) => {
     .article-bar {
         height: 46px;
         box-sizing: border-box;
-        border-bottom: 1px solid ;
+        border-bottom: 1px solid;
         @include border_color;
         ul {
             display: flex;
@@ -240,7 +240,7 @@ watch(isLabel, async (newVal, oldVal) => {
 
                 &:nth-child(1),
                 &:nth-child(2) {
-                    border-right: 1px solid ;
+                    border-right: 1px solid;
                     @include border_color();
                 }
                 &:hover {
@@ -248,13 +248,13 @@ watch(isLabel, async (newVal, oldVal) => {
                     color: $theme-color;
                 }
                 &.active {
-                color: $theme-color;
+                    color: $theme-color;
+                }
             }
-            }
-            
         }
     }
     .article {
+        padding: 0;
         li {
             box-sizing: content-box;
             height: 120px;
@@ -271,7 +271,7 @@ watch(isLabel, async (newVal, oldVal) => {
                     cursor: pointer;
                     margin: 5px 0;
                     padding: 0 10px;
-                    border-right: 1px solid ;
+                    border-right: 1px solid;
                     @include border_color();
                 }
                 .artist {
@@ -312,7 +312,7 @@ watch(isLabel, async (newVal, oldVal) => {
                 display: flex;
                 margin-top: 6px;
                 padding-bottom: 12px;
-                border-bottom: 1px solid ;
+                border-bottom: 1px solid;
                 @include border-color();
                 .content-main {
                     width: 516px;

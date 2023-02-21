@@ -34,7 +34,7 @@ export default defineNuxtConfig({
         },
     },
     // 全局css
-    css: ['~/assets/css/reset.css'],
+    css: ['~/assets/css/reset.css', '~/assets/css/markdown.css'],
     vite: {
         css: {
             preprocessorOptions: {

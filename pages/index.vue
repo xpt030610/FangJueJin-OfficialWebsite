@@ -18,7 +18,6 @@
                 </li>
             </ul>
         </div>
-        <TheArticle ></TheArticle>
         <div class="view-container">
             <ArticleList></ArticleList>
             <aside class="index-aside">sas</aside>
