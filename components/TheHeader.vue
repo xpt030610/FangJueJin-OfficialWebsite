@@ -45,20 +45,7 @@ const mainRes = mainList.value.data;
 const isIndex = useIsIndex();
 isIndex.value = true;
 
-//设置白天黑夜模式
-// let theme = 1;
-// let isSun = true;
-// const changeTheme = () => {
-//     if (theme == 1) {
-//         theme = 2;
-//         document.documentElement.setAttribute('data-theme', 'theme2');
-//         isSun = false;
-//     } else if (theme == 2) {
-//         theme = 1;
-//         document.documentElement.setAttribute('data-theme', 'theme');
-//         isSun = true;
-//     }
-// };
+
 </script>
 <script>
 export default {

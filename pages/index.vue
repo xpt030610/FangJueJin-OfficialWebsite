@@ -47,6 +47,7 @@ const changeLabel = (id) => {
 </script>
 
 <style lang="scss" scoped>
+// @import '~/assets/css/markdown.css';
 .container {
     position: relative;
     display: flex;
