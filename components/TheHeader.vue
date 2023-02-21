@@ -4,7 +4,7 @@
             <div class="container">
                 <NuxtLink to="/" class="icon">
                     <img src="~/assets/image/icon.png" alt="" />
-                    稀土掘金
+                    <p>稀土掘金</p>
                 </NuxtLink>
                 <div class="main-nav">
                     <div class="main-nav-list">
@@ -44,8 +44,6 @@ const mainRes = mainList.value.data;
 //设置初始为“首页”
 const isIndex = useIsIndex();
 isIndex.value = true;
-
-
 </script>
 <script>
 export default {
@@ -81,7 +79,7 @@ export default {
         .container {
             display: flex;
             margin: auto;
-            max-width: 1440px;
+            max-width: 1280px;
             height: 100%;
             .icon {
                 display: flex;
@@ -95,6 +93,11 @@ export default {
                 font-size: 20px;
                 img {
                     height: 70%;
+                }
+                p {
+                    @media screen and (max-width: 640px) {
+                        display: none;
+                    }
                 }
             }
             .main-nav {
@@ -113,6 +116,12 @@ export default {
                             line-height: 60px;
                             margin: 0 10px;
                             @include font_sub_color();
+                            @media screen and (max-width: 748px) {
+                                display: none;
+                                &:nth-child(1) {
+                                    display: block;
+                                }
+                            }
                             &:hover {
                                 cursor: pointer;
                                 border-top: 3px solid $theme-color;
@@ -129,6 +138,7 @@ export default {
                 }
                 .right-side-nav {
                     height: 100%;
+                    width: 70px;
                     line-height: 60px;
                     img {
                         position: absolute;

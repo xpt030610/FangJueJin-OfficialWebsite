@@ -47,7 +47,6 @@ const changeLabel = (id) => {
 </script>
 
 <style lang="scss" scoped>
-// @import '~/assets/css/markdown.css';
 .container {
     position: relative;
     display: flex;
@@ -57,8 +56,11 @@ const changeLabel = (id) => {
     width: 100%;
     @include bg_sub_color();
     transition: all 0.3s linear;
+
     .view-nav {
         position: sticky;
+        display: flex;
+        justify-content: center;
         top: 0;
         width: 100%;
         height: 46px;
@@ -70,34 +72,49 @@ const changeLabel = (id) => {
             position: -webkit-sticky; /* 兼容 Safari */
             position: sticky;
             display: flex;
-            margin: auto;
             max-width: 960px;
-        }
-        li {
-            line-height: 46px;
-            padding: 0 1rem 0 0;
-            margin-right: 1.2rem;
-            @include font_sub_color();
-            &:hover {
-                cursor: pointer;
-                color: $theme-color;
-            }
-            &.active {
-                color: $theme-color;
+            li {
+                line-height: 46px;
+                font-size: 1.16rem;
+                padding: 0 1rem 0 1em;
+                margin-right: 1.2rem;
+                @include font_sub_color();
+                &:hover {
+                    cursor: pointer;
+                    color: $theme-color;
+                }
+                &.active {
+                    color: $theme-color;
+                }
+                @media screen and (max-width: 1023px) {
+                    display: none;
+                    &:nth-child(1),
+                    &:nth-child(2),
+                    &:nth-child(3),
+                    &:nth-child(4) {
+                        display: block;
+                    }
+                }
             }
         }
     }
 
     .view-container {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         top: 20px;
         width: 960px;
         margin-top: 15px;
-
+        @media (max-width: 960px) {
+            width: 100%;
+        }
         .index-aside {
+            margin-left: 20px;
             width: 240px;
             background-color: blue;
+            @media screen and (max-width: 1023px) {
+                display: none;
+            }
         }
     }
 }

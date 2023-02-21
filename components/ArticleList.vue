@@ -222,8 +222,11 @@ watch(isLabel, async (newVal, oldVal) => {
 
 <style lang="scss" scoped>
 .articles {
-    width: 700px;
+    max-width: 700px;
     @include bg_color();
+    @media (max-width: 960px) {
+        width: 100%;
+    }
     .article-bar {
         height: 46px;
         box-sizing: border-box;

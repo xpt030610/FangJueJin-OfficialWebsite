@@ -4,7 +4,9 @@
             <div class="text-container">
                 <div class="title">{{ artRes[0].attributes.title }}</div>
                 <div class="info">
-                    <div class="artist">{{ artRes[0].attributes.artist.data.attributes.name }}</div>
+                    <div class="artist">
+                        {{ artRes[0].attributes.artist.data.attributes.name }}
+                    </div>
                     <div class="date">{{ theDate }}</div>
                 </div>
                 <img :src="cover" alt="" />
@@ -41,7 +43,8 @@ const theDate =
     ':' +
     date.getMinutes();
 //封面图
-const cover ='http://localhost:1337'+ artRes[0].attributes.cover.data.attributes.url;
+const cover =
+    'http://localhost:1337' + artRes[0].attributes.cover.data.attributes.url;
 console.log(cover);
 let markdownText = useMarkdown();
 markdownText.value = artRes[0].attributes.text;
@@ -55,13 +58,18 @@ markdownText.value = artRes[0].attributes.text;
     @include bg_sub_color();
     .container {
         display: flex;
+        justify-content: center;
         padding-top: 20px;
+        width: 100%;
         .text-container {
             box-sizing: border-box;
             width: 820px;
-            margin-right: 20px;
+            
             padding: 32px;
             @include bg_color();
+            @media (max-width: 960px) {
+                width: 100%;
+            }
             .title {
                 font-size: 32px;
                 font-weight: 800;
@@ -83,15 +91,19 @@ markdownText.value = artRes[0].attributes.text;
                     @include font_sub_color();
                 }
             }
-            img{
-                width: 756px;
-                height: 425px;
+            img {
+                width: 75%;
+                margin-left: 12.5%;
             }
         }
         .sidebar {
             width: 300px;
             height: 600px;
+            margin-left: 20px;
             background-color: blue;
+            @media (max-width: 1024px) {
+                display: none;
+            }
         }
     }
 }
