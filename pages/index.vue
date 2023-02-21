@@ -18,8 +18,9 @@
                 </li>
             </ul>
         </div>
+        <TheArticle ></TheArticle>
         <div class="view-container">
-            <TheArticle></TheArticle>
+            <ArticleList></ArticleList>
             <aside class="index-aside">sas</aside>
         </div>
     </div>
@@ -55,6 +56,7 @@ const changeLabel = (id) => {
     align-items: center;
     width: 100%;
     @include bg_sub_color();
+    transition: all 0.3s linear;
     .view-nav {
         position: sticky;
         top: 0;
@@ -81,10 +83,9 @@ const changeLabel = (id) => {
                 color: $theme-color;
             }
             &.active {
-            color: $theme-color;
+                color: $theme-color;
+            }
         }
-        }
-        
     }
 
     .view-container {

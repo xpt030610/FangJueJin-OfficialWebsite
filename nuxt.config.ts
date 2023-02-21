@@ -1,8 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
-    modules: [
-        // '@nuxtjs/tailwindcss'
-    ],
+    modules: ['@nuxt/content'],
+    content: {
+        documentDriven: true,
+    },
+    plugins: [{ src: '~/plugins/marked.js', mode: 'client' }],
     app: {
         // 配置应用的head标签
         head: {
@@ -42,5 +45,4 @@ export default defineNuxtConfig({
             },
         },
     },
-    // plugins: [{ src: '~/plugins/vue-virtual-scroller.js', mode: 'client' }],
 });

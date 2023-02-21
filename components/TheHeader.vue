@@ -19,15 +19,16 @@
                     </div>
                     <div class="right-side-nav">
                         <img
-                            src="~/assets/sun.png"
-                            @click="changeTheme()"
-                            class="sunIcon"
-                        />
-                        <img
                             src="~/assets/moon.png"
                             @click="changeTheme()"
                             class="moonIcon"
-                            style="display: none"
+                            v-if="!isSun"
+                        />
+                        <img
+                            src="~/assets/sun.png"
+                            @click="changeTheme()"
+                            class="sunIcon"
+                            v-if="isSun"
                         />
                     </div>
                 </div>
@@ -45,24 +46,42 @@ const isIndex = useIsIndex();
 isIndex.value = true;
 
 //设置白天黑夜模式
-let theme = 1;
-let sunIcon = document.querySelector('.sunIcon');
-let moonIcon = document.querySelector('.moonIcon');
-const changeTheme = () => {
-    if (theme == 1) {
-        theme = 2;
-        document.documentElement.setAttribute('data-theme', 'theme2');
-        sunIcon.style.display = 'none';
-        moonIcon.style.display = 'block';
-    } else if (theme == 2) {
-        theme = 1;
-        document.documentElement.setAttribute('data-theme', 'theme');
-        sunIcon.style.display = 'block';
-        moonIcon.style.display = 'none';
-    }
+// let theme = 1;
+// let isSun = true;
+// const changeTheme = () => {
+//     if (theme == 1) {
+//         theme = 2;
+//         document.documentElement.setAttribute('data-theme', 'theme2');
+//         isSun = false;
+//     } else if (theme == 2) {
+//         theme = 1;
+//         document.documentElement.setAttribute('data-theme', 'theme');
+//         isSun = true;
+//     }
+// };
+</script>
+<script>
+export default {
+    data() {
+        return {
+            isSun: true,
+            theme: 1,
+        };
+    },
+    methods: {
+        changeTheme() {
+            this.isSun = !this.isSun;
+            if (this.theme == 1) {
+                this.theme = 2;
+                document.documentElement.setAttribute('data-theme', 'theme2');
+            } else if (this.theme == 2) {
+                this.theme = 1;
+                document.documentElement.setAttribute('data-theme', 'theme');
+            }
+        },
+    },
 };
 </script>
-
 <style  lang="scss" scoped>
 .header {
     border-bottom: 1px solid;
@@ -125,6 +144,7 @@ const changeTheme = () => {
                     height: 100%;
                     line-height: 60px;
                     img {
+                        position: absolute;
                         width: 30px;
                         height: 30px;
                         margin: 15px 0;

@@ -5,6 +5,7 @@ specifiers:
   '@commitlint/config-conventional': ^17.4.2
   '@nuxt/content': ^2.4.3
   '@nuxtjs/style-resources': ^1.2.1
+  '@types/marked': ^4.0.8
   '@types/node': ^18.13.0
   '@typescript-eslint/eslint-plugin': ^5.51.0
   '@typescript-eslint/parser': ^5.51.0
@@ -19,6 +20,7 @@ specifiers:
   eslint-plugin-vue: ^9.9.0
   husky: ^8.0.3
   lint-staged: ^13.1.1
+  marked: ^4.2.12
   node-sass: ^8.0.0
   nuxt: ^3.1.2
   postcss: ^8.4.21
@@ -32,6 +34,7 @@ specifiers:
 
 dependencies:
   '@nuxtjs/style-resources': registry.npmmirror.com/@nuxtjs/style-resources/1.2.1
+  marked: registry.npmmirror.com/marked/4.2.12
   node-sass: registry.npmmirror.com/node-sass/8.0.0
   sass-loader: registry.npmmirror.com/sass-loader/13.2.0_lfhahpixv55isjjweky3jrd6uu
   scss-loader: registry.npmmirror.com/scss-loader/0.0.1
@@ -43,6 +46,7 @@ devDependencies:
   '@commitlint/cli': registry.npmmirror.com/@commitlint/cli/17.4.2
   '@commitlint/config-conventional': registry.npmmirror.com/@commitlint/config-conventional/17.4.2
   '@nuxt/content': registry.npmmirror.com/@nuxt/content/2.4.3
+  '@types/marked': registry.npmmirror.com/@types/marked/4.0.8
   '@types/node': registry.npmmirror.com/@types/node/18.13.0
   '@typescript-eslint/eslint-plugin': registry.npmmirror.com/@typescript-eslint/eslint-plugin/5.51.0_z4swst3wuuqk4hlme4ajzslgh4
   '@typescript-eslint/parser': registry.npmmirror.com/@typescript-eslint/parser/5.51.0_7kw3g6rralp5ps6mg3uyzz6azm
@@ -1988,6 +1992,12 @@ packages:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.11.tgz}
     name: '@types/json-schema'
     version: 7.0.11
+    dev: true
+
+  registry.npmmirror.com/@types/marked/4.0.8:
+    resolution: {integrity: sha512-HVNzMT5QlWCOdeuBsgXP8EZzKUf0+AXzN+sLmjvaB3ZlLqO+e4u0uXrdw9ub69wBKFs+c6/pA4r9sy6cCDvImw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/marked/-/marked-4.0.8.tgz}
+    name: '@types/marked'
+    version: 4.0.8
     dev: true
 
   registry.npmmirror.com/@types/mdast/3.0.10:
@@ -6451,6 +6461,14 @@ packages:
     name: markdown-table
     version: 3.0.3
     dev: true
+
+  registry.npmmirror.com/marked/4.2.12:
+    resolution: {integrity: sha512-yr8hSKa3Fv4D3jdZmtMMPghgVt6TWbk86WQaWhDloQjRSQhMMYCAro7jP7VDJrjjdV8pxVxMssXS8B8Y5DZ5aw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/marked/-/marked-4.2.12.tgz}
+    name: marked
+    version: 4.2.12
+    engines: {node: '>= 12'}
+    hasBin: true
+    dev: false
 
   registry.npmmirror.com/mdast-squeeze-paragraphs/5.2.1:
     resolution: {integrity: sha512-npINYQrt0E5AvSvM7ZxIIyrG/7DX+g8jKWcJMudrcjI+b1eNOKbbu+wTo6cKvy5IzH159IPfpWoRVH7kwEmnug==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/mdast-squeeze-paragraphs/-/mdast-squeeze-paragraphs-5.2.1.tgz}
