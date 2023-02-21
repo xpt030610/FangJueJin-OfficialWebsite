@@ -33,7 +33,7 @@
                     <div class="meta-container">
                         <div class="artist">
                             <!-- 作者 -->
-                            {{ art.attributes.artist }}
+                            {{ art.attributes.artist.data.attributes.name }}
                         </div>
                         <div class="date">
                             <!-- 距离现在的时间 -->

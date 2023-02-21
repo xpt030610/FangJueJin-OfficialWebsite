@@ -3,7 +3,7 @@
         <div class="main-header-box">
             <div class="container">
                 <NuxtLink to="/" class="icon">
-                    <img src="~/assets/icon.png" alt="" />
+                    <img src="~/assets/image/icon.png" alt="" />
                     稀土掘金
                 </NuxtLink>
                 <div class="main-nav">
@@ -19,13 +19,13 @@
                     </div>
                     <div class="right-side-nav">
                         <img
-                            src="~/assets/moon.png"
+                            src="~/assets/image/moon.png"
                             @click="changeTheme()"
                             class="moonIcon"
                             v-if="!isSun"
                         />
                         <img
-                            src="~/assets/sun.png"
+                            src="~/assets/image/sun.png"
                             @click="changeTheme()"
                             class="sunIcon"
                             v-if="isSun"

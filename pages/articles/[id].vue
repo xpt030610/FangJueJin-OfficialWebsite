@@ -4,7 +4,7 @@
             <div class="text-container">
                 <div class="title">{{ artRes[0].attributes.title }}</div>
                 <div class="info">
-                    <div class="artist">{{ artRes[0].attributes.artist }}</div>
+                    <div class="artist">{{ artRes[0].attributes.artist.data.attributes.name }}</div>
                     <div class="date">{{ theDate }}</div>
                 </div>
                 <img :src="cover" alt="" />
@@ -51,6 +51,7 @@ markdownText.value = artRes[0].attributes.text;
 .main {
     display: flex;
     justify-content: center;
+    transition: all 0.3s linear;
     @include bg_sub_color();
     .container {
         display: flex;

@@ -1,6 +1,6 @@
-
-  * {
-    color: #000;
+// @import url(~/ass );
+* {
+    @include font_color();
   }
   .my-vhtml img{
     display: block;
@@ -186,7 +186,8 @@
   }
   
   .my-vhtml code {
-    background-color: #f3f4f4;
+
+    @include bg_sub_color();
     padding: 0 2px 0 2px;
     line-height: 1.25em;
   }
