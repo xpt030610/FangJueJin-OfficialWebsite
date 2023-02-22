@@ -3,15 +3,20 @@
         <div class="main-header-box">
             <div class="container">
                 <NuxtLink to="/" class="icon">
-                    <img src="~/assets/image/icon.png" alt="" />
+                    <img
+                        src="~/assets/image/icon.png"
+                        alt="图标"
+                        loading="lazy"
+                    />
                     <p>稀土掘金</p>
                 </NuxtLink>
                 <div class="main-nav">
                     <div class="main-nav-list">
                         <ul>
-                            <nuxt-link to="/">
-                                <li :class="{ active: isIndex }">首页</li>
-                            </nuxt-link>
+                            <li :class="{ active: isIndex }">
+                                <nuxt-link to="/">首页</nuxt-link>
+                            </li>
+
                             <li v-for="v in mainRes" :key="v.id">
                                 {{ v.attributes.item }}
                             </li>
@@ -20,15 +25,19 @@
                     <div class="right-side-nav">
                         <img
                             src="~/assets/image/moon.png"
+                            alt="切换模式图标"
                             @click="changeTheme()"
                             class="moonIcon"
                             v-if="!isSun"
+                            loading="lazy"
                         />
                         <img
                             src="~/assets/image/sun.png"
+                            alt="切换模式图标"
                             @click="changeTheme()"
                             class="sunIcon"
                             v-if="isSun"
+                            loading="lazy"
                         />
                     </div>
                 </div>
@@ -92,7 +101,7 @@ export default {
                 font-weight: 500;
                 font-size: 20px;
                 img {
-                    height: 70%;
+                    width: 32px;
                 }
                 p {
                     @media screen and (max-width: 640px) {

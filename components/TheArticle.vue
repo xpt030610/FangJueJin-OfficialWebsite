@@ -1,5 +1,4 @@
 <template>
-
     <div v-if="container" v-html="container" class="my-vhtml"></div>
 </template>
 
@@ -23,7 +22,6 @@ export default defineComponent({
     },
     mounted() {
         let markdownText = useMarkdown();
-        console.log(markdownText);
         const NuxtApp = useNuxtApp();
         this.container = NuxtApp.markdownToHtml(markdownText.value);
     },
@@ -31,7 +29,7 @@ export default defineComponent({
 </script>
 
 <style  scoped>
-.my-vhtml img{
+.my-vhtml img {
     width: 700px;
 }
 </style>

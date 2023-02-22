@@ -23,11 +23,6 @@
             </ul>
         </div>
         <ul class="article">
-            <!-- <RecycleScroller
-                :items="itemArray"
-                :item-size="132"
-                style="height: 2640px"
-            > -->
             <li v-for="art in artRes" :key="art.id">
                 <nuxt-link :to="`/articles/${art.id}`">
                     <div class="meta-container">
@@ -61,29 +56,16 @@
                             </div>
                         </div>
                         <img
-                            :src="`http://localhost:1337${art.attributes.cover.data.attributes.url}`"
+                            :src="`http://localhost:1337${art.attributes.cover.data.attributes.formats.small.url}`"
                             :alt="art.attributes.title"
                             loading:lazy
                         />
                     </div>
                 </nuxt-link>
             </li>
-            <!-- </RecycleScroller> -->
         </ul>
     </div>
 </template>
-<script>
-// import { RecycleScroller } from 'vue-virtual-scroller';
-
-// export default {
-//     components: {
-//         RecycleScroller,
-//     },
-// };
-// export const useArtList = () => useState('artList', () => await useFetch(
-//   'http://localhost:1337/api/articles?populate=*',
-// ));
-</script>
 
 <script setup>
 //引用
@@ -101,7 +83,6 @@ const { data: artList } = await useFetch(
     'http://localhost:1337/api/articles?populate=*',
 );
 artRes.value = artList.value.data;
-console.log(artRes);
 //设置“active”的标签
 let activeIndex = ref(1);
 const changeNav = async (id) => {
@@ -223,6 +204,7 @@ watch(isLabel, async (newVal, oldVal) => {
 <style lang="scss" scoped>
 .articles {
     max-width: 700px;
+    border-radius: 10px;
     @include bg_color();
     @media (max-width: 960px) {
         width: 100%;

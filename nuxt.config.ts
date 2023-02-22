@@ -9,13 +9,16 @@ export default defineNuxtConfig({
     app: {
         // 配置应用的head标签
         head: {
+            htmlAttrs: {
+                lang: 'zh',
+            },
             title: '仿掘金',
             meta: [
                 { charset: 'utf-8' },
                 {
                     name: 'viewport',
                     content:
-                        'width=device-width,initial-scale=1,user-scalable=no,viewport-fit=cover',
+                        'width=device-width,initial-scale=1,viewport-fit=cover',
                 },
                 { name: 'referrer', content: 'never' },
                 {
