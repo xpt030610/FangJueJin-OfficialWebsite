@@ -102,6 +102,7 @@ export default {
                 font-size: 20px;
                 img {
                     width: 32px;
+                    height: 32px;
                 }
                 p {
                     @media screen and (max-width: 640px) {

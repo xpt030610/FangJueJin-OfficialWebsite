@@ -1,16 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-    modules: ['@nuxt/content'],
-    content: {
-        documentDriven: true,
-    },
     plugins: [{ src: '~/plugins/marked.js', mode: 'client' }],
     app: {
         // 配置应用的head标签
         head: {
             htmlAttrs: {
-                lang: 'zh',
+                lang: 'zh-CN',
             },
             title: '仿掘金',
             meta: [

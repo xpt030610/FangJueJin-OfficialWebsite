@@ -16,7 +16,6 @@
     "devDependencies": {
         "@commitlint/cli": "^17.4.2",
         "@commitlint/config-conventional": "^17.4.2",
-        "@nuxt/content": "^2.4.3",
         "@types/marked": "^4.0.8",
         "@types/node": "^18.13.0",
         "@typescript-eslint/eslint-plugin": "^5.51.0",
@@ -43,9 +42,7 @@
         "node-sass": "^8.0.0",
         "sass-loader": "^13.2.0",
         "scss-loader": "^0.0.1",
-        "typescript": "^4.9.5",
-        "vue-virtual-scroller": "2.0.0-beta.8",
-        "vue3-virtual-scroller": "^0.2.3"
+        "typescript": "^4.9.5"
     },
     "config": {
         "commitizen": {
