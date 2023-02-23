@@ -5,16 +5,6 @@
 
 <script lang="ts">
 export default defineComponent({
-    head() {
-        return {
-            link: [
-                {
-                    rel: 'stylesheet',
-                    href: '/css/markdown.css',
-                },
-            ],
-        };
-    },
     data() {
         return {
             container: '',
@@ -28,8 +18,4 @@ export default defineComponent({
 });
 </script>
 
-<style  scoped>
-.my-vhtml img {
-    width: 700px;
-}
-</style>
+

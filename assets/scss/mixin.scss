@@ -35,12 +35,6 @@
   }
 }
 
-@mixin icon_color(){
-    color: $icon-color-theme;
-    [data-theme=theme2] & {
-        color: $icon-color-theme2;
-    }
-}
 //边颜色
 @mixin border_color(){
   border-color: $border-color-theme;

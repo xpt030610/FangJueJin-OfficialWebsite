@@ -14,12 +14,6 @@
                 >
                     最新
                 </li>
-                <li
-                    :class="[3 === activeIndex ? 'active' : '']"
-                    @click="changeNav(3)"
-                >
-                    热榜
-                </li>
             </ul>
         </div>
         <ul class="article">
@@ -88,76 +82,54 @@ let activeIndex = ref(1);
 const changeNav = async (id) => {
     activeIndex.value = id;
     triggerRef(activeIndex);
-    if (id == 1) {
-        navValue = 1;
-        if (labelValue != 1) {
-            const { data: artList } = await useFetch(
-                `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${labelValue}`,
-            );
-            artRes.value = artList.value.data;
-        } else {
-            const { data: artList } = await useFetch(
-                'http://localhost:1337/api/articles?populate=*',
-            );
-            artRes.value = artList.value.data;
-        }
-    }
-    if (id == 2) {
-        navValue = 2;
-        if (labelValue != 1) {
-            const { data: artList } = await useFetch(
-                `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${labelValue}&sort[0]=date%3Adesc`,
-            );
-            artRes.value = artList.value.data;
-        } else {
-            const { data: artList } = await useFetch(
-                'http://localhost:1337/api/articles?populate=*&sort[0]=date%3Adesc',
-            );
-            artRes.value = artList.value.data;
-        }
+    if (id === 1 || id === 2) {
+        navValue = id;
+        const sortQuery = id === 2 ? '&sort[0]=date%3Adesc' : '';
+        const filterQuery =
+            labelValue === 1 ? '' : `&filters[article_tabs][id]=${labelValue}`;
+        const { data: artList } = await useFetch(
+            `http://localhost:1337/api/articles?populate=*&${filterQuery}${sortQuery}`,
+        );
+        artRes.value = artList.value.data;
     }
 };
 
 //计算时间相差函数
+const MINUTE = 60; // 一分钟有60秒
+const HOUR = MINUTE * 60; // 一小时有60分钟
+const DAY = HOUR * 24; // 一天有24小时
+const MONTH = DAY * 30; // 一个月有30天
+const YEAR = MONTH * 12; // 一年有12个月
+
 const dateCount = (artdate) => {
-    var now = new Date();
-    var date = new Date(artdate);
-    //计算时间间隔，单位为分钟
-    var inter = parseInt((now.getTime() - date.getTime()) / 1000 / 60);
-    if (inter <= 1) {
+    const now = new Date();
+    const date = new Date(artdate);
+    const interval = parseInt((now.getTime() - date.getTime()) / 1000 / 60); // 时间间隔，单位为分钟
+
+    if (interval <= 1) {
         return '刚刚';
-    }
-    //多少分钟前
-    else if (inter < 60) {
-        return inter.toString() + '分钟前';
-    }
-    //多少小时前
-    else if (inter < 60 * 24) {
-        return parseInt(inter / 60).toString() + '小时前';
-    }
-    //多少天前
-    else if (inter < 60 * 24 * 30) {
-        return parseInt(inter / (60 * 24)).toString() + '天前';
-    }
-    //多少月前
-    else if (inter < 60 * 24 * 30 * 12) {
-        return parseInt(inter / (60 * 24 * 12)).toString() + '个月前';
-    }
-    //太久远的就： 年月日时分
-    else {
-        return (
-            date.getFullYear().toString() +
-            '-' +
-            (date.getMonth() + 1).toString() +
-            '-' +
-            date.getDate().toString() +
-            ' ' +
-            date.getHours() +
-            ':' +
-            (date.getMinutes() < 10
-                ? '0' + date.getMinutes()
-                : date.getMinutes())
-        );
+    } else if (interval < MINUTE) {
+        // 多少分钟前
+        return `${interval}分钟前`;
+    } else if (interval < HOUR) {
+        // 多少小时前
+        return `${parseInt(interval / MINUTE)}小时前`;
+    } else if (interval < DAY) {
+        // 多少天前
+        return `${parseInt(interval / HOUR)}天前`;
+    } else if (interval < MONTH) {
+        // 多少月前
+        return `${parseInt(interval / DAY)}个月前`;
+    } else if (interval < YEAR) {
+        // 多少年前
+        return `${parseInt(interval / MONTH)}年前`;
+    } else {
+        // 太久远的就： 年-月-日 时:分
+        return `${date.getFullYear()}-${
+            date.getMonth() + 1
+        }-${date.getDate()} ${date.getHours()}:${
+            date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+        }`;
     }
 };
 
@@ -174,36 +146,26 @@ const artCount = (art) => {
 const isLabel = useIsLabel();
 //监视isLabel变化
 watch(isLabel, async (newVal, oldVal) => {
-    if (newVal != 1 && navValue == 1) {
-        const { data: artList } = await useFetch(
-            `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${newVal}`,
-        );
-        artRes.value = artList.value.data;
-        labelValue = newVal;
-    } else if (newVal != 1 && navValue == 2) {
-        const { data: artList } = await useFetch(
-            `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${newVal}&sort[0]=date%3Adesc`,
-        );
-        artRes.value = artList.value.data;
-        labelValue = newVal;
-    } else if (newVal != 2 && navValue == 2) {
-        const { data: artList } = await useFetch(
-            `http://localhost:1337/api/articles?populate=*&sort[0]=date%3Adesc`,
-        );
-        artRes.value = artList.value.data;
-        labelValue = newVal;
-    } else {
-        const { data: artList } = await useFetch(
-            'http://localhost:1337/api/articles?populate=*',
-        );
-        artRes.value = artList.value.data;
+    let url = 'http://localhost:1337/api/articles?populate=*';
+    if (newVal !== 1) {
+        url = `http://localhost:1337/api/articles?populate=*&filters[article_tabs][id]=${newVal}`;
+        if (navValue === 2) {
+            url += '&sort[0]=date%3Adesc';
+        }
+    } else if (navValue === 2) {
+        url =
+            'http://localhost:1337/api/articles?populate=*&sort[0]=date%3Adesc';
     }
+    const { data: artList } = await useFetch(url);
+    artRes.value = artList.value.data;
+    labelValue = newVal;
 });
 </script>
 
 <style lang="scss" scoped>
 .articles {
     max-width: 700px;
+    min-height: 1000px;
     border-radius: 10px;
     @include bg_color();
     @media (max-width: 960px) {

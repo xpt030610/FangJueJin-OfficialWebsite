@@ -30,7 +30,7 @@
                     <ul class="list">
                         <li>
                             <img
-                                :src="authorImg1"
+                                :src="authorImgs[1]"
                                 alt="作者1头像"
                                 loading="lazy"
                             />
@@ -38,7 +38,7 @@
                         </li>
                         <li>
                             <img
-                                :src="authorImg2"
+                                :src="authorImgs[2]"
                                 alt="作者2头像"
                                 loading="lazy"
                             />
@@ -46,7 +46,7 @@
                         </li>
                         <li>
                             <img
-                                :src="authorImg3"
+                                :src="authorImgs[3]"
                                 alt="作者3头像"
                                 loading="lazy"
                             />
@@ -87,15 +87,12 @@ const banClose = () => {
 const { data: artistList } = await useFetch(
     `http://localhost:1337/api/artists/?populate=*`,
 );
-const author1 = artistList.value.data[1];
-const author2 = artistList.value.data[0];
-const author3 = artistList.value.data[2];
-const authorImg1 =
-    'http://localhost:1337' + author1.attributes.photo.data.attributes.formats.thumbnail.url;
-const authorImg2 =
-    'http://localhost:1337' + author2.attributes.photo.data.attributes.formats.thumbnail.url;
-const authorImg3 =
-    'http://localhost:1337' + author3.attributes.photo.data.attributes.formats.thumbnail.url;
+const [author1, author2, author3] = artistList.value.data;
+const authorImgs = [
+    `http://localhost:1337${author1.attributes.photo.data.attributes.formats.thumbnail.url}`,
+    `http://localhost:1337${author2.attributes.photo.data.attributes.formats.thumbnail.url}`,
+    `http://localhost:1337${author3.attributes.photo.data.attributes.formats.thumbnail.url}`,
+];
 
 // 将label的值改为id
 const isLabel = useIsLabel();
@@ -208,7 +205,7 @@ const changeLabel = (id) => {
                     right: 5px;
                     width: 20px;
                     height: 20px;
-                    background-image: url('~/assets/image/close.png');
+                    background-image: url('~/assets/image/close.webp');
                     background-size: cover;
                     cursor: pointer;
                     z-index: 2;

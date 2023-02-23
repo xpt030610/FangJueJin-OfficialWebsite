@@ -4,7 +4,7 @@
             <div class="container">
                 <NuxtLink to="/" class="icon">
                     <img
-                        src="~/assets/image/icon.png"
+                        src="~/assets/image/icon.webp"
                         alt="图标"
                         loading="lazy"
                     />
@@ -24,7 +24,7 @@
                     </div>
                     <div class="right-side-nav">
                         <img
-                            src="~/assets/image/moon.png"
+                            src="~/assets/image/moon.webp"
                             alt="切换模式图标"
                             @click="changeTheme()"
                             class="moonIcon"
@@ -32,7 +32,7 @@
                             loading="lazy"
                         />
                         <img
-                            src="~/assets/image/sun.png"
+                            src="~/assets/image/sun.webp"
                             alt="切换模式图标"
                             @click="changeTheme()"
                             class="sunIcon"
