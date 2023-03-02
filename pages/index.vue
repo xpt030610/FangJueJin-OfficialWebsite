@@ -30,7 +30,7 @@
                     <ul class="list">
                         <li>
                             <img
-                                :src="authorImgs[1]"
+                                :src="authorImgs[0]"
                                 alt="作者1头像"
                                 loading="lazy"
                             />
@@ -38,7 +38,7 @@
                         </li>
                         <li>
                             <img
-                                :src="authorImgs[2]"
+                                :src="authorImgs[1]"
                                 alt="作者2头像"
                                 loading="lazy"
                             />
@@ -46,7 +46,7 @@
                         </li>
                         <li>
                             <img
-                                :src="authorImgs[3]"
+                                :src="authorImgs[2]"
                                 alt="作者3头像"
                                 loading="lazy"
                             />
@@ -106,6 +106,7 @@ const changeLabel = (id) => {
 
 <style lang="scss" scoped>
 .container {
+    user-select: none;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -117,21 +118,31 @@ const changeLabel = (id) => {
 
     .view-nav {
         position: sticky;
-        display: flex;
         justify-content: center;
         top: -1px;
         width: 100%;
-        height: 46px;
+        height: 48px;
+        overflow-y: hidden;
+        overflow-x: scroll;
         z-index: 3;
         border-bottom: 1px solid;
         @include bg_color();
         @include border_color();
+        &::-webkit-scrollbar {
+            // width: 1px !important;
+            height: 10px !important;
+        }
         ul {
-            position: -webkit-sticky; /* 兼容 Safari */
-            position: sticky;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             justify-content: space-between;
             width: 960px;
+            @media screen and (max-width: 1024px) {
+                left: 0;
+                transform: translateX(0);
+            }
             li {
                 line-height: 46px;
                 font-size: 1.16rem;
@@ -145,15 +156,6 @@ const changeLabel = (id) => {
                 &.active {
                     color: $theme-color;
                 }
-                @media screen and (max-width: 1023px) {
-                    display: none;
-                    &:nth-child(1),
-                    &:nth-child(2),
-                    &:nth-child(3),
-                    &:nth-child(4) {
-                        display: block;
-                    }
-                }
             }
         }
     }
@@ -164,7 +166,7 @@ const changeLabel = (id) => {
         top: 20px;
         width: 960px;
         margin-top: 15px;
-        @media (max-width: 960px) {
+        @media screen and (max-width: 960px) {
             width: 100%;
         }
         .index-aside {
@@ -218,13 +220,18 @@ const changeLabel = (id) => {
                 height: 280px;
                 padding: 20px;
                 border-radius: 10px;
+                @include font_color();
                 @include bg_color();
                 .nav {
+                    cursor: pointer;
                     font-size: 16px;
                     padding-bottom: 10px;
                     margin-bottom: 20px;
                     border-bottom: 1px solid;
                     @include border_color();
+                    &:hover {
+                        color: $theme-color;
+                    }
                 }
                 ul {
                     display: flex;
@@ -240,9 +247,13 @@ const changeLabel = (id) => {
                             border-radius: 23px;
                         }
                         div {
+                            cursor: pointer;
                             position: absolute;
                             line-height: 46px;
-                            left: 50px;
+                            left: 60px;
+                            &:hover {
+                                color: $theme-color;
+                            }
                         }
                     }
                 }

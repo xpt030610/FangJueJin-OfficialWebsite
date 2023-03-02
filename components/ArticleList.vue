@@ -135,10 +135,12 @@ const dateCount = (artdate) => {
 
 //把markdown文章改成正常格式
 const artCount = (art) => {
-    const result = art.replace(
-        /(\*{1,2}|_{1,2}|`{1,3}|#{1,6}\s+|!?\[.*?\]\(.*?\)|<.*?>|^\s*\d+\.\s+|\[|\]|\s+)/gm,
-        '',
-    );
+    const result = art
+        .replace(
+            /(\*{1,2}|_{1,2}|`{1,3}|#{1,6}\s+|!?\[.*?\]\(.*?\)|<.*?>|^\s*\d+\.\s+|\[|\]|\s+)/gm,
+            '',
+        )
+        .slice(0, 100);
     return result;
 };
 
@@ -165,10 +167,11 @@ watch(isLabel, async (newVal, oldVal) => {
 <style lang="scss" scoped>
 .articles {
     max-width: 700px;
-    min-height: 1000px;
+    min-height: 1200px;
     border-radius: 10px;
+    margin-bottom: 20px;
     @include bg_color();
-    @media (max-width: 960px) {
+    @media screen and (max-width: 960px) {
         width: 100%;
     }
     .article-bar {
@@ -176,6 +179,10 @@ watch(isLabel, async (newVal, oldVal) => {
         box-sizing: border-box;
         border-bottom: 1px solid;
         @include border_color;
+        @media screen and (max-width: 960px) {
+            width: 100%;
+            font-size: 8px;
+        }
         ul {
             display: flex;
             padding: 0 10px;
@@ -202,11 +209,13 @@ watch(isLabel, async (newVal, oldVal) => {
     }
     .article {
         padding: 0;
+        width: 100%;
         li {
             box-sizing: content-box;
             height: 120px;
             position: relative;
             padding: 12px 20px 0;
+            max-width: 660px;
             .meta-container {
                 display: flex;
                 height: 22px;
@@ -231,7 +240,11 @@ watch(isLabel, async (newVal, oldVal) => {
                 .article-tab {
                     padding: 0;
                     border: 0;
+                    overflow: hidden;
                     display: flex;
+                    @media screen and (max-width: 480px) {
+                        display: none;
+                    }
                     li {
                         position: relative;
                         height: 13px;
@@ -262,7 +275,7 @@ watch(isLabel, async (newVal, oldVal) => {
                 border-bottom: 1px solid;
                 @include border-color();
                 .content-main {
-                    width: 516px;
+                    max-width: 516px;
                     margin-top: 8px;
                     .article-title {
                         font-style: 24px;
@@ -271,6 +284,7 @@ watch(isLabel, async (newVal, oldVal) => {
                         @include font_color();
                     }
                     .article-text {
+                        width: 100%;
                         font-weight: 400;
                         font-size: 13px;
                         line-height: 22px;
@@ -288,6 +302,9 @@ watch(isLabel, async (newVal, oldVal) => {
                     object-fit: cover;
                     overflow-clip-margin: content-box;
                     overflow: clip;
+                    @media screen and (max-width: 700px) {
+                        width: 80px;
+                    }
                 }
             }
         }

@@ -90,7 +90,8 @@ markdownText.value = artRes[0].attributes.text;
             border-radius: 10px;
             padding: 32px;
             @include bg_color();
-            @media (max-width: 960px) {
+            @include font_color();
+            @media screen and (max-width: 960px) {
                 width: 100%;
             }
             .title {
@@ -134,10 +135,11 @@ markdownText.value = artRes[0].attributes.text;
         .sidebar {
             position: sticky;
             top: 20px;
-            width: 300px;
+            min-width: 300px;
             height: 600px;
             margin-left: 20px;
-            @media (max-width: 1024px) {
+            @include font_color();
+            @media screen and (max-width: 1024px) {
                 display: none;
             }
             .author-block {

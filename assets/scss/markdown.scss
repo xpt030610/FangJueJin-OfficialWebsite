@@ -176,7 +176,11 @@
 
     code {
         @include bg_sub_color();
-        padding: 0 2px 0 2px;
+        display: block;
+        width: 100%;
+        font-size: 1rem;
+        margin: 10px 0;
+        padding: 0 0 0 2rem;
         line-height: 1.25em;
     }
 }
