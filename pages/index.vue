@@ -26,7 +26,7 @@
                     <div class="banClose" @click="banClose()"></div>
                 </div>
                 <div class="author-list">
-                    <div class="nav">作者榜</div>
+                    <div class="nav">🎖️作者榜</div>
                     <ul class="list">
                         <li>
                             <img
@@ -34,7 +34,9 @@
                                 alt="作者1头像"
                                 loading="lazy"
                             />
-                            <div>{{ author1.attributes.name }}</div>
+                            <a href="https://juejin.cn/user/937216171846712">{{
+                                author1.attributes.name
+                            }}</a>
                         </li>
                         <li>
                             <img
@@ -42,7 +44,9 @@
                                 alt="作者2头像"
                                 loading="lazy"
                             />
-                            <div>{{ author2.attributes.name }}</div>
+                            <a href="https://juejin.cn/user/937216171846712">{{
+                                author2.attributes.name
+                            }}</a>
                         </li>
                         <li>
                             <img
@@ -50,7 +54,9 @@
                                 alt="作者3头像"
                                 loading="lazy"
                             />
-                            <div>{{ author3.attributes.name }}</div>
+                            <a href="https://juejin.cn/user/937216171846712">{{
+                                author3.attributes.name
+                            }}</a>
                         </li>
                     </ul>
                 </div>
@@ -246,8 +252,7 @@ const changeLabel = (id) => {
                             height: 46px;
                             border-radius: 23px;
                         }
-                        div {
-                            cursor: pointer;
+                        a {
                             position: absolute;
                             line-height: 46px;
                             left: 60px;

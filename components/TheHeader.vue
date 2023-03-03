@@ -78,6 +78,7 @@ export default {
 </script>
 <style  lang="scss" scoped>
 .header {
+    user-select: none;
     border-bottom: 1px solid;
     z-index: 2;
     @include bg_color();

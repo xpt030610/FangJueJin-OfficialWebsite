@@ -17,6 +17,34 @@
             </ul>
         </div>
         <ul class="article">
+            <li>
+                <a
+                    href="https://juejin.cn/video/7202149403342143520?utm_source=timeline1&utm_medium=banner&utm_campaign=xiaoce_nuxt3_20230301"
+                >
+                    <div class="meta-container">
+                        <div class="artist">掘金小册</div>
+                        <div class="date">2天前</div>
+                        <div class="ads">广告</div>
+                    </div>
+                    <div class="content-wrapper">
+                        <div class="content-main">
+                            <div class="article-title">
+                                小册上新｜Nuxt 3.0 全栈开发
+                            </div>
+                            <div class="article-text">
+                                🔥
+                                视频+图文形式，内容涵盖：核心知识、工程架构、全栈进阶、
+                                项目实战，帮你快速精通 Nuxt3 开发！
+                            </div>
+                        </div>
+                        <img
+                            src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/310ed8b04f8948e486e604d1322a53fe~tplv-k3u1fbpfcp-no-mark:240:240:240:160.awebp?"
+                            alt="掘金小册封面"
+                            loading:lazy
+                        />
+                    </div>
+                </a>
+            </li>
             <li v-for="art in artRes" :key="art.id">
                 <nuxt-link :to="`/articles/${art.id}`">
                     <div class="meta-container">
@@ -221,6 +249,7 @@ watch(isLabel, async (newVal, oldVal) => {
                 height: 22px;
                 font-size: 13px;
                 @include font_sub_color();
+                .ads,
                 .artist,
                 .date,
                 .article-tab {
@@ -229,6 +258,15 @@ watch(isLabel, async (newVal, oldVal) => {
                     padding: 0 10px;
                     border-right: 1px solid;
                     @include border_color();
+                }
+                .ads {
+                    position: absolute;
+                    border: 1px solid;
+                    padding: 5px;
+                    top: 0;
+                    right: 20px;
+                    border-radius: 5px;
+                    @include font_sub_color();
                 }
                 .artist {
                     padding-left: 0px;
